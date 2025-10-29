@@ -21,9 +21,14 @@ const seedDB = async () => {
     await Campground.deleteMany({});
     for (let i = 0; i < 50; i += 1) {
         const randomCityIndex = Math.floor(Math.random() * cities.length);
+        const price = Math.floor(Math.random() * 2000) + 1000;
+        const randomNum = Math.floor(Math.random() * 1000);
         const camp = new Campground({
             location: `${cities[randomCityIndex].prefecture}${cities[randomCityIndex].city}`,
-            title: `${sample(descriptors)}・${sample(places)}`
+            title: `${sample(descriptors)}・${sample(places)}`,
+            image: `https://api.api-ninjas.com/v1/randomimage?width=400&height=400&category=nature`,
+            description: "この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れ",
+            price: price
         });
         await camp.save()
     }
